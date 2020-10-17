@@ -1,1 +1,161 @@
-bla
+AddCSLuaFile()
+
+local A = "AMBER"
+local R = "RED"
+local DR = "D_RED"
+local B = "BLUE"
+local W = "WHITE"
+local CW = "C_WHITE"
+local SW = "S_WHITE"
+local G = "GREEN"
+local RB = "BLUE/RED"
+
+local name = "NYPD TDM Rear Interior Lightbar"
+
+local COMPONENT = {}
+
+COMPONENT.Model = "models/tdmcars/emergency/equipment/int_lightbar_big.mdl"
+COMPONENT.Required = "489864412"
+COMPONENT.Skin = 0
+COMPONENT.Bodygroups = {}
+COMPONENT.NotLegacy = true
+COMPONENT.ColorInput = 1
+COMPONENT.Category = "Interior"
+COMPONENT.DefaultColors = {
+	[1] = "RED",
+	[2] = "BLUE",
+	[3] = "AMBER"
+}
+
+COMPONENT.Meta = {
+	auto_int_lb = {
+		W = 4.1,
+		H = 3.1,
+		Sprite = "sprites/emv/tdm_charger_rear_int",
+		Scale = 1,
+		WMult = 3,
+		NoLegacy = true,
+		DirAxis = "Up",
+		DirOffset = -90
+	},
+}
+
+COMPONENT.Positions = {
+
+	[1] = { Vector( -1.8, -6.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+	[2] = { Vector( -1.8, 6.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+
+	[3] = { Vector( -1.8, -10.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+	[4] = { Vector( -1.8, 10.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+
+	[5] = { Vector( -1.8, -14.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+	[6] = { Vector( -1.8, 14.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+
+	[7] = { Vector( -1.8, -18.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+	[8] = { Vector( -1.8, 18.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+
+	[9] = { Vector( -1.8, -22.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+	[10] = { Vector( -1.8, 22.8, 0.82 ), Angle( 0, 90, 0 ), "auto_int_lb" },
+
+}
+
+COMPONENT.Sections = {
+	["auto_tdm_int_lightbar"] = {
+		[1] = {
+			{ 1, R }, { 2, R }, { 6, R }, { 5, R }, { 9, R }, { 10, R }
+		},
+		[2] = {
+			{ 3, W }, { 4, W }, { 7, W }, { 8, W }
+		},
+		[3] = {
+			{ 1, A }
+		},
+		[4] = {
+			{ 2, A }
+		},
+		[5] = {
+			{ 3, A }
+		},
+		[6] = {
+			{ 4, A }
+		},
+		[7] = {
+			{ 5, A }
+		},
+		[8] = {
+			{ 6, A }
+		},
+		[9] = {
+			{ 7, A }
+		},
+		[10] = {
+			{ 8, A }
+		},
+		[11] = {
+			{ 9, A }
+		},
+		[12] = {
+			{ 10, A }
+		},
+		[13] = {
+			{ 1, A }, { 2, A }
+		},
+		[14] = {
+			{ 3, A }, { 4, A }
+		},
+		[15] = {
+			{ 5, A }, { 6, A }
+		},
+		[16] = {
+			{ 7, A }, { 8, A }
+		},
+		[17] = {
+			{ 9, A }, { 10, A }
+		},
+		[18] = {
+			{ 1, R }, { 2, R }, { 3, R }, { 4, R }, { 5, R }, { 6, R }, { 7, R }, { 8, R }, { 9, R }, { 10, R }
+		},
+		[19] = {
+			{ 1, A }, { 2, A }, { 3, R }, { 4, R }, { 5, A }, { 6, A }, { 7, R }, { 8, R }, { 9, A }, { 10, A }
+		}
+	},
+}
+
+COMPONENT.Patterns = {
+	["auto_tdm_int_lightbar"] = {
+		["code1"] = { 
+			18
+		},
+		["code2"] = {
+			19, 19, 19, 19, 19, 0, 0, 0, 0, 0
+		},
+		["code3"] = {
+			1, 1, 1, 1, 1, 2, 2, 2, 2, 2
+		},
+		["right"] = {
+			11, 11, 11, 9, 9, 9, 7, 7, 7, 5, 5, 5, 3, 3, 3, 4, 4, 4, 6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 12, 12
+		},
+		["left"] = {
+			12, 12, 12, 10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4, 4, 3, 3, 3, 5, 5, 5, 7, 7, 7, 9, 9, 9, 11, 11, 11
+		},
+		["diverge"] = {
+			13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17
+		}
+	}
+}
+
+COMPONENT.Modes = {
+	Primary = {
+		M1 = { ["auto_tdm_int_lightbar"] = "code1", },
+		M2 = { ["auto_tdm_int_lightbar"] = "code2", },
+		M3 = { ["auto_tdm_int_lightbar"] = "code3", }
+	},
+	Auxiliary = {
+		L = { ["auto_tdm_int_lightbar"] = "left" },
+		R = { ["auto_tdm_int_lightbar"] = "right" },
+		D = { ["auto_tdm_int_lightbar"] = "diverge" },
+	},
+	Illumination = {}
+}
+
+EMVU:AddAutoComponent( COMPONENT, name )
